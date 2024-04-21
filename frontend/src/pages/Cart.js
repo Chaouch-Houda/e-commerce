@@ -3,14 +3,12 @@ import SummaryApi from '../common';
 import Context from '../context';
 import displayINRCurrency from '../helpers/displayCurrency';
 import { MdDelete } from "react-icons/md";
-import imagePayement from "../assest/imagePayement.png";
 
 const Cart = () => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
     const context = useContext(Context);
     const loadingCart = new Array(4).fill(null);
-    const [imageDisplay, setImageDisplay] = useState(false);
 
     const fetchData = async () => {
         const response = await fetch(SummaryApi.addToCartProductView.url, {
@@ -167,10 +165,8 @@ const Cart = () => {
                                     <p>{displayINRCurrency(totalPrice)}</p>
                                 </div>
 
-                                <button onClick={() => { setImageDisplay(true) }} className='bg-blue-600 p-2 text-white w-full mt-2'>Payment</button>
-                                <div className={` ${imageDisplay ? "block" : "hidden"}`}>
-                                    {imageDisplay && <img className='absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 ' src={imagePayement} alt='Payment' />}
-                                </div>
+                                <button className='bg-blue-600 p-2 text-white w-full mt-2'>Payment</button>
+            
                             </div>
                         )
                     }
